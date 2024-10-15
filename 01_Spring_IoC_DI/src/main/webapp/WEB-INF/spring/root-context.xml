@@ -3,6 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean class="com.br.spring.di.Phone" id="phone1">
+		<property name="name" value="아이폰 16 pro" />
+		<property name="brand" value="Apple" />
+		<property name="price" value="1700000" />
+		<property name="releaseDate" value="2024-09-28" />
+	</bean>
+
+	<bean class="com.br.spring.di.Phone" id="phone2">
+		<constructor-arg value="갤럭시 s24" />
+		<constructor-arg value="Samsung" />
+		<constructor-arg value="1600000" />
+		<constructor-arg value="2024-02-01" />
+	</bean>
+
+
 		
 </beans>

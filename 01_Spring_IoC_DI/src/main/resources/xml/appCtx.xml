@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	
+	<bean class="com.br.spring.ioc.xml.Calculator" id="calculator" />
+	<!-- 
+		[내부적으로 실행되는 코드] 
+		Calculator calculator = new Calculator();
+	-->
+	
+
+
+	<!-- setter Injection 예시1 -->
+	<bean class="com.br.spring.ioc.xml.Student" id="student1">
+		<property name="name" value="카리나" ></property>
+		<property name="academy" value="sm아카데미" ></property>
+		<property name="classColor" value="빨강색"  />
+		<property name="calc" ref="calculator"  />
+	</bean>
+	<!-- 
+		[내부적으로 실행되는 코드] 
+		Student student1 = new Student();
+		student1.setName("카리나");
+		student1.setAcademy("sm아카데미");
+		student1.setClassColor("빨강색");
+		student1.setCalc(calculator);
+	-->
+
+
+
+	<!-- setter Injection 예시2 (property 태그를 사용하지 않는 방법) -->
+	<!-- Namespace로 p 추가하면 property 태그 대신 p:필드명 속성으로 값 주입 가능 -->
+	<bean class="com.br.spring.ioc.xml.Student" id="student2"
+			p:name= "장원영"
+			p:academy= "스타쉽아카데미"
+			p:classColor="파랑색"
+			p:calc-ref="calculator"  />
+			
+			
+
+	<!-- constructor Injection 예시 -->
+	<bean class="com.br.spring.ioc.xml.Student" id="student3">
+		<constructor-arg value="권나라" />
+		<constructor-arg value="고스트아카데미" />
+		<constructor-arg value="초록색" />
+		<constructor-arg ref="calculator" />
+	</bean>
+	<!-- 
+		[내부적으로 실행되는 코드] 
+		Student student3 = new Student("권나라", "고스트아카데미", "초록색", calculator);
+	-->
+
+
+
+	
+	
+	<bean class="com.br.spring.ioc.xml.StudentDao" id="studentDao"></bean>
+
+
+
+
+
+
+
+
+
+</beans>
