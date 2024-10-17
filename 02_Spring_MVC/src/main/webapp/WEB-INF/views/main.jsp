@@ -73,5 +73,26 @@
 	<!-- <a href="${contextPath}/detail2.mem?no=1">회원상세조회</a> -->
 	<a href="${contextPath}/member/detail2.do?no=1">회원상세조회</a> <br><br><br>
 
+
+	<br><br>
+
+
+	<!-- (3) 커맨드 객체 방법 -->
+	<form action="${ contextPath }/member/enroll3.do" method="post">
+		이름 : <input type="text" name="name"> <br>
+		나이 : <input type="text" name="age"> <br>
+		주소 : <input type="text" name="addr"> <br>
+		<button>등록</button>
+	</form>
+	
+	
+	<br><br>
+	
+	<h3>4. 응답페이지로 포워딩시 필요한 데이터를 담는 방법</h3>
+	<a href="${ contextPath }/notice/list.do">공지사항 목록페이지로 이동</a>
+
+
+
+
 </body>
 </html>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.br.mvc.dto.MemberDto;
+
 @RequestMapping("/member")
 @Controller
 public class MemberController {
@@ -53,6 +55,13 @@ public class MemberController {
 		System.out.println("이름: " + name);
 		System.out.println("나이: " + age);
 		System.out.println("주소: " + addr);
+		
+		MemberDto mem = new MemberDto();
+		mem.setName(name);
+		//mem.setAge(age); 롬복 이후 dto 필드의 타입을 String으로 바꿨기 때문에 오류나는게 정상이라 주석처리했다.
+		mem.setAddr(addr);
+		
+		System.out.println(mem);
     	
     	return "main";
     }
@@ -67,5 +76,17 @@ public class MemberController {
 	}
     
     
+
+
+
+
+	// (3) 커맨드 객체 방법
+	@PostMapping("/enroll3.do")
+	public String memberEnroll3(MemberDto mem){
+		System.out.println(mem);
+
+		return "main";
+	}
+
     
 }
