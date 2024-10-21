@@ -12,6 +12,13 @@
 </head>
 <body>
 
+	<c:if test="${ not empty alertMsg }"> 
+		<script>
+			alert("${alertMsg}");
+		</script>
+	</c:if>
+
+
 	<h3>공지사항 상세 페이지</h3>
 
 	<c:choose>
@@ -22,7 +29,9 @@
 		<c:otherwise>
 			번호 : ${ notice.no } <br>
 			제목 : ${ notice.title } <br>
-			내용 : ${ notice.content }
+			내용 : ${ notice.content } <br><br>
+			
+			<a href="${contextPath}/notice/modifyForm.do?no=${notice.no}">수정페이지로 이동</a>
 		</c:otherwise>
 	</c:choose>
 	

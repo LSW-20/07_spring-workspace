@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+
+	<appender class="ch.qos.logback.core.ConsoleAppender" name="consoleLog">
+		<encoder>
+			<pattern>%-5level: [%date{yyyy-MM-dd HH:mm:ss}] [%logger:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+	
+	<logger name="org.springframework" level="INFO" /> 
+	<logger name="com.br.sbatis" level="DEBUG" /> 
+
+	
+	<root level="WARN">
+		<appender-ref ref="consoleLog" />
+	</root>	 
+		 
+	 
+
+</configuration>
+
+
+
+

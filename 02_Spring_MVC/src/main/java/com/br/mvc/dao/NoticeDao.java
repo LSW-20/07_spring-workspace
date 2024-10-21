@@ -43,4 +43,21 @@ public class NoticeDao {
 	}
 	
 	
+	
+	public int updateNotice(NoticeDto n) {
+		
+		// 원래라면 쿼리 실행. 그러나 지금 db 연동이 되어있지 않으므로 가상의 dbList를 사용한다.
+		
+		for(NoticeDto notice : dbList) {
+			if(notice.getNo() == n.getNo()) {
+				notice.setTitle(n.getTitle());
+				notice.setContent(n.getContent());
+				return 1; // 업데이트 성공
+			}
+		}
+		
+		return 0;
+	}
+	
+	
 }

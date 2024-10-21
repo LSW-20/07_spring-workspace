@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.br.sbatis.dto.NoticeDto" alias="NoticeDto" />
+	</typeAliases>
+	
+	<!-- 연결 db 정보는 mybatis 관련한 SqlSession[Template] 빈으로 등록하는 곳에서 작성한다.  -->	
+		
+	<mappers>
+		<mapper resource="mappers/notice-mapper.xml" />
+	</mappers>
+	
+	
+	
+</configuration>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+
+	<appender class="ch.qos.logback.core.ConsoleAppender" name="consoleLog">
+		<encoder>
+			<pattern>%-5level: [%date{yyyy-MM-dd HH:mm:ss}] [%logger:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender class="ch.qos.logback.core.FileAppender" name="fileLog">
+		<file>/logs/ajax.log</file>
+		<append>true</append>
+		<immediateFlush>true</immediateFlush>
+		
+		<encoder>
+			<pattern>%-5level: [%date{yyyy-MM-dd HH:mm:ss}] [%logger:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>	
+
+	<appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="rollingFileLog">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>/logs/ajax-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+		
+		<encoder>
+			<pattern>%-5level: [%date{yyyy-MM-dd HH:mm:ss}] [%logger:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>	
+
+
+
+
+	<!-- (1) root logger 만으로 모든 클래스 내의 로그가 출력되도록 
+	<root level="DEBUG">
+		<appender-ref ref="consoleLog" />
+	</root>
+ 	-->
+
+
+
+	<!-- (2) logger 태그로 특정 패키지를 따로 레벨 지정
+	<logger name="org.springframework" level="INFO">
+		<appender-ref ref="consoleLog" />
+		<appender-ref ref="fileLog" />
+		<appender-ref ref="rollingFileLog" />
+	</logger>
+
+	<logger name="com.br.ajax" level="DEBUG">
+		<appender-ref ref="consoleLog" />
+		<appender-ref ref="fileLog" />
+		<appender-ref ref="rollingFileLog" />
+	</logger>
+	-->
+	 
+	 
+	 
+	<!-- (3) root logger와 logger 함께 사용하기 --> 
+	
+	<logger name="org.springframework" level="INFO" /> 
+	<logger name="com.br.ajax" level="DEBUG" /> 
+	<!-- appender를 안쓰고 root logger로 전달. additivity가 기본값 true로 되어 있다. -->
+	<!-- 그 밖의 다른 패키지의 것들은 WARN레벨 이상으로 설정. -->
+	
+	
+	<!-- 모든 패키지에 적용됨. 기본 로그 레벨은 WARN으로 설정 -->
+	<root level="WARN">
+		<appender-ref ref="consoleLog" />
+		<appender-ref ref="fileLog" />
+		<appender-ref ref="rollingFileLog" />
+	</root>	 
+		 
+	 
+
+</configuration>
+
+
+
+

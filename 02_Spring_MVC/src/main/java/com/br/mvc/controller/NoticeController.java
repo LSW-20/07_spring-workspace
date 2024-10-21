@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.br.mvc.dto.NoticeDto;
 import com.br.mvc.service.NoticeService;
@@ -92,6 +94,39 @@ public class NoticeController {
 	}
 	
 	
+	
+	@RequestMapping("/modifyForm.do")
+	public String noticeModifyForm(int no, Model model) {
+		
+		NoticeDto notice = noticeService.selectNoticeByNo(no);
+		model.addAttribute("notice", notice);
+		return "notice/modifyForm";
+		
+	}
+	
+	
+	@PostMapping("/update.do")
+	public String noticeUpdate(NoticeDto n, /*Model model*/ RedirectAttributes ra) { // 1) 요청시 전달값 처리 - 커맨드 객체
+		
+		// 2) 요청처리를 위한 서비스 호출
+		int result = noticeService.updateNotice(n);
+		
+		// 3) 응답
+		if(result > 0) {
+			
+			// return "notice/detail"; 이건 포워딩이다. 
+
+			//model.addAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			ra.addFlashAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			
+			return "redirect:/notice/detail.do?no=" + n.getNo(); // context path 안줘도 됨. 여기에도 글번호 넘겨야 함.
+		}else {
+			// return "main"; 이렇게 하면 메인페이지가 뜨긴 하는데 url이 메인 페이지가 아니라 /update.do다.
+			// MvcController 가보면 이미 메인페이지로 이동하는 메소드가 정의되어 있음.
+			return "redirect:/";
+		}
+		
+	}
 	
 	
 }
