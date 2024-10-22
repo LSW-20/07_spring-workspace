@@ -14,6 +14,15 @@
 	<logger name="org.springframework" level="INFO" /> 
 	<logger name="com.br.sbatis" level="DEBUG" /> 
 
+
+	<logger name="jdbc.sqlonly" level="off" /> 	  			<!-- 쿼리문만 -->
+	<logger name="jdbc.sqltiming" level="off" />   			<!-- 쿼리문 + 실행시간 -->
+	<logger name="jdbc.audit" level="off" /> 						<!-- JDBC 호출 정보  -->
+	<logger name="jdbc.resultset" level="off" />  				<!-- ResultSet 호출 정보 -->
+	<logger name="jdbc.resultsettable" level="off" />    <!-- ResultSet 결과 (조회결과 테이블) -->
+	<logger name="jdbc.conntection" level="off" />       <!-- Connection 호출 정보 -->
+	
+
 	
 	<root level="WARN">
 		<appender-ref ref="consoleLog" />

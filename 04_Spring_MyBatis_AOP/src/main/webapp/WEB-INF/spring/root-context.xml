@@ -5,8 +5,10 @@
 	
 	
 	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+				 <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="username" value="sbatis" />
 		<property name="password" value="sbatis" />
 	</bean>

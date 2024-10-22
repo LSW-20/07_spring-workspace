@@ -37,12 +37,23 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
-		<!-- AspectJ -->
-		<dependency>
+		<!-- AspectJ (AOP를 위한 라이브러리)-->
+		<dependency> <!-- 원래 있던 것. 이게 있어야 "Advice 동작 시점"의 어노테이션들을 사용할 수 있다. -->
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
+		
+		<!-- 위빙 : Advice(공통로직)를 PointCut(핵심로직)에 로딩되도록 함 -->
+		<dependency> 
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+			<scope>runtime</scope>
+		</dependency>		
+		
+		
+		
 		
 		<!-- Logging (logback) -->
 		<dependency>
@@ -52,12 +63,21 @@
 			<!-- <scope>test</scope> 이건 지워야 함 -->
 		</dependency>
 
+		<!-- (2) slf4j -->
 		<dependency> <!-- 기존 dependency 중 이것만 남기고 다 지운다.-->
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>
 		
+		<!-- (3) log4jdbc -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>
+
+
 		
 
 		<!-- @Inject -->
