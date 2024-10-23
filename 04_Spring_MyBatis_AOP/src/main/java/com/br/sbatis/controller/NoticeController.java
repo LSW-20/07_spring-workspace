@@ -99,5 +99,15 @@ public class NoticeController {
 			return "redirect:/";
 		}
 	}
+	
+	
+	@GetMapping("/txtest.do")
+	public String transactionTest() {
+		
+		noticeService.transactionTest();
+		
+		return "redirect:/";
+	}
+	
 
 }

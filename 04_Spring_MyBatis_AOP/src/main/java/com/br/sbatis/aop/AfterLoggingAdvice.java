@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Aspect
+//@Aspect
 public class AfterLoggingAdvice {
 
 

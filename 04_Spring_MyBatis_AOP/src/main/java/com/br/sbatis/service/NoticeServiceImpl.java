@@ -41,6 +41,26 @@ public class NoticeServiceImpl implements NoticeService {
 	public int deleteNotice(String[] deleteNo) {
 		return noticeDao.deleteNotice(deleteNo);
 	}
+
+	
+	
+	@Override
+	public int transactionTest() {
+		
+		int result = noticeDao.insertNotice(NoticeDto.builder()
+													 .title("트랜잭션테스트제목2")
+													 .content("트랜잭션테스트내용2")
+													 .build()); // title, content 필드에 값을 담은 Notice 객체 생성
+		
+		if(result > 0) {
+			result = noticeDao.insertNotice(NoticeDto.builder().content("실패예정").build()); // content 필드에만 값을 담은 Notice 객체 생성
+		}
+		
+		
+	
+		
+		return result;
+	}
 	
 	
 

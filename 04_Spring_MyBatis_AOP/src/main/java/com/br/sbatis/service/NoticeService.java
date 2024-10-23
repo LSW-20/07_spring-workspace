@@ -22,4 +22,8 @@ public interface NoticeService {
 	// 다수의 번호들 가지고 공지사항 일괄삭제
 	int deleteNotice(String[] deleteNo);
 	
+	
+	
+	// 트랜잭션 테스트용 메소드
+	int transactionTest();
 }
