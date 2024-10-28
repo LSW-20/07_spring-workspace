@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
+
+	<resultMap id="attachResultMap" type="AttachDto">
+		<result column="file_no" property="fileNo" />
+		<result column="file_path" property="filePath" />
+		<result column="original_name" property="originalName" />
+		<result column="filesystem_name" property="filesystemName" />
+		<result column="ref_board_no" property="refBoardNo" />
+	</resultMap>
+
+	<resultMap id="boardResultMap" type="BoardDto">
+		<result column="board_no" property="boardNo" />
+		<result column="board_title" property="boardTitle" />
+		<result column="board_content" property="boardContent" />
+	</resultMap>
+
+  
+  <insert id="insertBoard">
+  	insert
+		  into board
+		  (
+		    board_no
+		  , board_title
+		  , board_content
+		  )
+		  values
+		  (
+		    seq_bno.nextval
+		  , #{boardTitle}
+		  , #{boardContent}
+		  )
+  </insert>
+  
+  
+  
+  <insert id="insertAttach">
+		insert
+		  into attachment
+		  (
+		    file_no
+		  , file_path
+		  , original_name
+		  , filesystem_name
+		  , ref_board_no
+		  )
+		  values
+		  (
+		    seq_fno.nextval
+		  , #{filePath}
+		  , #{originalName}
+		  , #{filesystemName}
+		  , seq_bno.currval
+		  )
+  </insert>
+  
+  
+  <select id="selectAttachList" resultMap="attachResultMap">
+  	select
+  					file_no						
+  				, file_path					
+  				, original_name			
+  				, filesystem_name		
+  				, ref_board_no			
+  		from  attachment			
+  </select>
+  
+  
+  <select id="selectBoard" resultMap="boardResultMap">
+  	select
+  				 board_no
+  			 , board_title
+  			 , board_content
+  	  from board
+  	 where board_no = #{boardNo} 		  
+  </select>
   
 </mapper>

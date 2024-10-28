@@ -16,4 +16,8 @@ public interface BoardService {
 	// 첨부파일 목록 조회
 	List<AttachDto> selectAttachList();
 	
+	
+	// 글번호로 게시글 조회
+	BoardDto selectBoard(int boardNo);
+	
 }

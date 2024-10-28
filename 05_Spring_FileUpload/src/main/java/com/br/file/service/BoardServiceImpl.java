@@ -18,17 +18,45 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int insertOneFileBoard(BoardDto board, AttachDto attach) {
-		return 0;
+		
+		
+		int result = boardDao.insertBoard(board);
+		
+		if(result > 0 && attach != null) {
+			result = boardDao.insertAttach(attach);
+		}
+		
+		
+		return result;
 	}
+	
 
 	@Override
 	public int insertManyFileBoard(BoardDto board, List<AttachDto> list) {
-		return 0;
+		
+		int result = boardDao.insertBoard(board);
+		
+		
+		if(result > 0 && !list.isEmpty()) {
+			result = 0;
+			for(AttachDto attach : list) {
+				result += boardDao.insertAttach(attach);
+			}
+		}
+		
+		return result;
 	}
+	
 
 	@Override
 	public List<AttachDto> selectAttachList() {
-		return null;
+		return boardDao.selectAttachList();
+	}
+
+
+	@Override
+	public BoardDto selectBoard(int boardNo) {
+		return boardDao.selectBoard(boardNo);
 	}
 	
 }

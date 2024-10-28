@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Bootstrap 사용을 위한 CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ------------------------- -->
+</head>
+<body>
+
+  <div class="container p-3">
+
+    <!-- Header, Nav start -->
+    <style>
+      header{height: 50px}
+      header a{color:black;}
+      header .profile-img{width:30px;}
+    </style>
+    <header class="row m-3">
+      <div class="col-3 d-flex justify-content-center align-items-center">
+        <a href=""><img src="../../resources/images/goodee_logo.png" width="100px"></a>
+      </div>
+      <div class="col-5"></div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+
+        <!-- case1. 로그인전 
+        <a href="">회원가입</a> &nbsp;|&nbsp;
+        <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a> 
+        -->
+        <!-- case2. 로그인후 -->
+        <!--
+        <div>
+          <img class="profile-img" src="../../resources/images/defaultProfile.png">&nbsp;
+          <a href="">홍길동님</a> &nbsp;|&nbsp;
+          <a href="">로그아웃</a>
+        </div>
+        -->
+
+      </div>
+    </header>
+    <nav class="navbar m-3 navbar-expand-sm bg-dark navbar-dark d-flex justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">공지사항</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">일반게시판</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">사진게시판</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 로그인 클릭 시 뜨는 모달 (기존에는 안보이다가 위의 a 클릭시 보임) -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button> 
+            </div>
+
+            <form action="로그인요청받아주는서버" method="post">
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <label for="userId" class="mr-sm-2">ID :</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="userId" name=""> <br>
+                    <label for="userPwd" class="mr-sm-2">Password:</label>
+                    <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter password" id="userPwd" name="">
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- Header, Nav end -->
+
+    <!-- Section start -->
+    <section class="row m-3" style="min-height: 500px">
+
+      <div class="container border p-5 m-4 rounded">
+        <h2 class="m-4">해당 페이지의 내용이 보여져야되는 자리</h2>
+        
+      
+      </div>
+
+    </section>
+    <!-- Section end -->
+
+    <!-- Footer start -->
+    <style>
+      footer{
+        height: 200px;
+        border-top: 1px solid lightgray;
+      }
+      footer a{color:black}
+      .footer-info{
+        list-style: "-  ";
+        padding-left:30px;
+      }
+      .footer-copyright{text-align:center}
+    </style>
+    <footer class="m-3">
+      <ul class="nav footer-link">
+        <li class="nav-item">
+          <a class="nav-link" href="#">이용약관</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">개인정보취급방침</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">인재채용</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">고객센터</a>
+        </li>
+      </ul>
+      <ul class="footer-info">
+        <li>상호명 : GooDee Academy</li>
+        <li>대표자 : 이승엽</li>
+        <li>전화 : 02-818-7950</li>
+        <li>개인정보책임자 : 주승재 / jsj@goodee.co.kr</li>
+        <li>본관 : (08505) 서울특별시 금천구 가산디지털2로 95</li>
+      </ul>
+      <div class="footer-copyright">
+        Copyright ⓒ GooDee Academy. All rights reserved.
+      </div>
+    </footer>
+    <!-- Footer end -->
+
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- mybatis 사용을 위한 빈 3개 -->
+	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource" destroy-method="close">
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+				 <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="spring" />
+		<property name="password" value="spring" />
+	</bean>
+
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>		
+	
+	
+	
+	<!-- 트랜잭션 처리용 aop를 위한 구문 3개 -->
+	<!-- AOP를 이용한 트랜잭션 처리 -->
+	<!-- 1) 트랜잭션 매니저 빈으로 등록 (dataSource 객체 필요함) -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<!-- 2) 트랜잭션 Advice 등록 -->
+	<tx:advice transaction-manager="txManager" id="txAdvice">
+		<tx:attributes>
+			<tx:method name="*" /> <!-- pointcut의 모든 메소드에서 실행하겠다. (삽입, 수정, 삭제, 목록조회, 상세조회 등의 메소드가 있음) -->
+			<tx:method name="select*" read-only="true" />  <!-- 단, select로 시작하는 메소드는 실행하지 않는다. (삽입, 수정, 삭제 메소드만 실행됨) -->
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<!-- 3) AOP 등록 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.br.spring.service.*Impl.*(..))" id="txPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+	
+	
+	
+	<!-- 파일 업로드를 위한 빈 등록 -->
+	<!-- 주의사항 : 빈 이름을 내 마음대로 하면 안되고 반드시 multipartResolver로 해야 한다. -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="maxUploadSizePerFile" value="10485760" />
+		<property name="maxUploadSize" value="104857600" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+		
+</beans>
