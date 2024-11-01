@@ -1,5 +1,7 @@
 package com.br.spring.service;
 
+import java.util.Map;
+
 import com.br.spring.dto.MemberDto;
 
 public interface MemberService {
@@ -17,5 +19,12 @@ public interface MemberService {
 	int updateMember(MemberDto m);
 	
 	// 회원탈퇴
-	int deleteMember(MemberDto m);
+	int deleteMember(String userId);
+	
+	// 회원프로필변경
+	int updateProfileImg(MemberDto m);
+
+	
+	// 비밀번호 변경
+	int updatePwd(Map<String, String> map);
 }

@@ -1,5 +1,7 @@
 package com.br.spring.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,4 +35,12 @@ public class MemberDao {
 		  return sqlSession.update("memberMapper.deleteMember", userId);
 	  }
 	  
+	  public int updateProfileImg(MemberDto m) {
+		  return sqlSession.update("memberMapper.updateProfileImg", m);
+	  }
+	  
+	  public int updatePwd(Map<String, String> map) {
+		  return sqlSession.update("memberMapper.updatePwd", map);
+	  }
+    
 }

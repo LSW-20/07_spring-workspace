@@ -13,13 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileUtil {
+	
 
-	public Map<String, String> fileupload(MultipartFile uploadFile) {
-		
+	public Map<String, String> fileupload(MultipartFile uploadFile, String folderName) {
 		
 		
 		// (1) 업로드할 폴더 (/upload/yyyyMMdd) 
-		String filePath = "/upload/" + new SimpleDateFormat("yyyyMMdd").format(new Date());
+		String filePath = "/upload/" + folderName + new SimpleDateFormat("/yyyyMMdd").format(new Date());
 		
 		File filePathDir = new File(filePath);
 		if(!filePathDir.exists()) { 	// 해당 경로의 폴더가 존재하지 않을 경우
@@ -51,7 +51,7 @@ public class FileUtil {
 		// db에 기록할 데이터 다시 반환
 		Map<String, String> map = new HashMap<>();
 		map.put("filePath", filePath);
-		map.put("originalFilename", originalFilename);
+		map.put("originalName", originalFilename);
 		map.put("filesystemName", filesystemName);
 		
 		return map;

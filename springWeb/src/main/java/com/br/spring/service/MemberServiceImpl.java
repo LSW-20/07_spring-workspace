@@ -1,5 +1,7 @@
 package com.br.spring.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.br.spring.dao.MemberDao;
@@ -33,7 +35,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int deleteMember(MemberDto m) {
-		return memberDao.deleteMember(null);
+	public int deleteMember(String userId) {
+		return memberDao.deleteMember(userId);
+	}
+
+	@Override
+	public int updateProfileImg(MemberDto m) {
+		return memberDao.updateProfileImg(m);
+	}
+
+	@Override
+	public int updatePwd(Map<String, String> map) {
+		return memberDao.updatePwd(map);
 	}
 }
