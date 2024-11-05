@@ -23,8 +23,17 @@
     <section class="row m-3" style="min-height: 500px">
 
       <div class="container border p-5 m-4 rounded">
-        <h2 class="m-4">해당 페이지의 내용이 보여져야되는 자리</h2>
+        <h2 class="m-4">webSocket을 이용하여 실시간으로 통신하기</h2>
         
+      
+      	<p>
+      		실시간으로 알림을 발생시킨다거나 채팅을 할 때 주로 websocket 사용 <br><br>
+      		
+      		<c:if test="${ not empty loginUser }">
+      			<a class="btn btn-secondary" href="${ contextPath }/chat/room.do">채팅방 입장</a>
+      		</c:if>
+      		
+      	</p>
       
       </div>
 

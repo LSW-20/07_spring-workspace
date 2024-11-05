@@ -48,4 +48,8 @@ public interface BoardService {
 	// 게시글 수정 <- 다중 첨부파일 수정
 	List<AttachDto> selectDelAttach(String[] delFileNo);
 	int updateBoard(BoardDto b, String[] delFileNo);
+	
+	
+	// 댓글 완전삭제 (스케줄러에 의해 작동)
+	int deleteReplyCompletely();
 }

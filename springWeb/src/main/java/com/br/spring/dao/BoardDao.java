@@ -86,6 +86,10 @@ public class BoardDao {
 		return sqlSession.delete("boardMapper.deleteAttach", delFileNo);
 	}
 
+	
+	public int deleteReplyCompletely() {
+		return sqlSession.delete("boardMapper.deleteReplyCompletely");
+	}
 
 	  
 }
